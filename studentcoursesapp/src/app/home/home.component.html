@@ -1,13 +1,29 @@
-
-
-<form>
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" class="form-control" id="Username"  placeholder="Enter username">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
-        <button type="submit" class="btn btn-primary" style="float:right;">Submit</button>
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" minlength="1" [(ngModel)]="userForm.Username" #Username="ngModel"
+      name="Username" placeholder="Enter Username" required>
+    <div *ngIf="Username.invalid && (Username.dirty || Username.touched)" class="alert alert-danger">
+      <div *ngIf="Username.errors.required">
+        Name is required.
+      </div>
+      <div *ngIf="Username.errors.minlength">
+        Name must be at least 4 characters long.
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" minlength="1" [(ngModel)]="userForm.Password" #Password="ngModel"
+    name="Password" placeholder="Enter Password" required>
+    <div *ngIf="Password.invalid && (Password.dirty || Password.touched)" class="alert alert-danger">
+      <div *ngIf="Password.errors.required">
+        Name is required.
+      </div>
+      <div *ngIf="Password.errors.minlength">
+        Name must be at least 4 characters long.
+      </div>
+    </div>
+  </div>
+  <button type="submit" [disabled]="!userForm.valid" class="btn btn-primary" style="float:right;">Submit</button>
 </form>
