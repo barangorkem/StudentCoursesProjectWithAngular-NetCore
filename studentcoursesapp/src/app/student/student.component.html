@@ -1,0 +1,30 @@
+
+<button type="button" class="btn btn-primary" style="float:right;padding:10px;margin-bottom:10px;" (click)="navigateStudentsAdd()">Yeni Öğrenci Ekle</button>
+
+<table class="table table-striped" style="margin-top:15px;">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col" sortable="studentName" (sort)="onSort($event)">Student Name</th>
+      <th scope="col" sortable="recordDate" (sort)="onSort($event)">Record Date</th>
+      <th scope="col" sortable="isActive" (sort)="onSort($event)">IsActive?</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let student of students;let i=index;" >
+      <th scope="row">{{ i+1 }}</th>
+      <td>
+       <a  [routerLink]="['/dashboard/student/edit/'+student.studentId]">{{ student.studentName }}</a> 
+      </td>
+      <td>{{ student.recordDate }}</td>
+<!-- Eğer öğrenci durumu aktif ise checked gösteriliyor değilse gösterilmiyor-->
+      <td *ngIf="student.isActive">        
+        <input class="form-check-input" type="checkbox" checked (change)="activeChange($event,student.studentId)">
+      </td>
+      <td *ngIf="!student.isActive">        
+          <input class="form-check-input" type="checkbox" (change)="activeChange($event,student.studentId)" >
+        </td>
+    </tr>
+    </tbody>
+  </table>
+  
