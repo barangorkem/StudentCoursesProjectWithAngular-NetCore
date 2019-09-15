@@ -17,6 +17,10 @@ export class HomeComponent implements OnInit {
   constructor(private _userService:UserService,private _toastrService:ToastrService,private router:Router) { }
 
   ngOnInit() {
+    if(localStorage.getItem("token")!=null)
+    {
+      this.router.navigate(['/dashboard'])
+    }
   }
 
   onLogin(form:NgForm)
