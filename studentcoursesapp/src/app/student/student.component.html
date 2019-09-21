@@ -1,5 +1,5 @@
 
-<button type="button" class="btn btn-primary" style="float:right;padding:10px;margin-bottom:10px;margin-top: 10px;" (click)="navigateStudentsAdd()">Yeni Öğrenci Ekle</button>
+<button type="button" [hidden]="!_userService.roleMatch(['Admin'])" class="btn btn-primary" style="float:right;padding:10px;margin-bottom:10px;margin-top: 10px;" (click)="navigateStudentsAdd()">Yeni Öğrenci Ekle</button>
 
 <table class="table table-striped" style="margin-top:15px;">
     <thead>

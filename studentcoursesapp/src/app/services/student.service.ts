@@ -12,7 +12,9 @@ export class StudentService {
 
   getStudents()
   {
-   return this.http.get(BASE_URL+"students");
+   return this.http.get(BASE_URL+"students",{headers:new HttpHeaders({
+    "Authorization":"Bearer "+localStorage.getItem("token")
+   })});
   }
   getStudent(userId)
   {

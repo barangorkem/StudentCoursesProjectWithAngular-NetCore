@@ -11,12 +11,12 @@ const routes: Routes = [
   { path: '', component:HomeComponent },
   { path: 'dashboard', component:DashboardComponent,
   children:[
-    { path: '', component:StudentComponent },
-    { path: 'student', component:StudentComponent },
-    { path: 'student/create', component:StudentCreateComponent },
-    { path: 'student/edit/:id', component:StudentCreateComponent },
+    { path: '', component:StudentComponent,canActivate:[AuthGuard],data:{roles:['User','Admin']} },
+    { path: 'student', component:StudentComponent,canActivate:[AuthGuard],data:{roles:['User','Admin']}  },
+    { path: 'student/create', component:StudentCreateComponent,canActivate:[AuthGuard],data:{roles:['Admin']} },
+    { path: 'student/edit/:id', component:StudentCreateComponent,canActivate:[AuthGuard],data:{roles:['Admin']} },
     { path: 'course', component:CourseComponent }
-  ],canActivate:[AuthGuard]
+  ]
 },
 
 ];

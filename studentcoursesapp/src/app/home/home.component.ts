@@ -29,6 +29,8 @@ export class HomeComponent implements OnInit {
     this._userService.onLogin(form.value).subscribe((data:HttpResponse<Response>)=>{
       localStorage.setItem("user",JSON.stringify(data['user']));
       localStorage.setItem("token",data['token']);
+      localStorage.setItem("role",data['role']);
+      console.log(data['role']);
       this.router.navigate(['dashboard/student'])
     },(err:HttpErrorResponse)=>{
       this._toastrService.error('Error',err.error.message);

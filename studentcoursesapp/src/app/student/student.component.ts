@@ -4,6 +4,7 @@ import { Student } from '../models/student.model';
 import { Router } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from '../services/user.service';
 
 export type SortDirection = 'asc' | 'desc' | '';
 const rotate: {[key: string]: SortDirection} = { 'asc': 'desc', 'desc': '', '': 'asc' };
@@ -43,7 +44,7 @@ export class NgbdSortableHeader {
 
 export class StudentComponent implements OnInit {
 
-  constructor(private _studentService:StudentService,private router:Router,private _toastrService:ToastrService) { }
+  constructor(private _studentService:StudentService,private router:Router,private _userService:UserService,private _toastrService:ToastrService) { }
   students:Student[];
   ngOnInit() {
     this._studentService.getStudents().subscribe((data:Student[])=>{
